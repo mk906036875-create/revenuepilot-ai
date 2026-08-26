@@ -1,4 +1,4 @@
- document.addEventListener("DOMContentLoaded", function () {
+, function () {
 
   // ==============================
   // Growth Simulator

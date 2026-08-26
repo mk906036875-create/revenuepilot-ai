@@ -1,1 +1,902 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="REVENUEPILOT AI — AI-powered Revenue Intelligence & CEO Decision Command Center">
+  <title>REVENUEPILOT AI | CEO Revenue Command Center</title>
 
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <!-- =========================================
+       APP SHELL
+  ========================================== -->
+
+  <div class="app-shell">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+
+      <div class="brand">
+        <div class="brand-mark">RP</div>
+
+        <div>
+          <h1>REVENUEPILOT</h1>
+          <span>AI COMMAND CENTER</span>
+        </div>
+      </div>
+
+      <nav class="main-nav">
+
+        <a href="#overview" class="nav-item active">
+          <span>⌂</span>
+          Overview
+        </a>
+
+        <a href="#forecast" class="nav-item">
+          <span>◷</span>
+          Forecast
+        </a>
+
+        <a href="#leaks" class="nav-item">
+          <span>⚠</span>
+          Revenue Leaks
+        </a>
+
+        <a href="#opportunities" class="nav-item">
+          <span>◆</span>
+          Opportunities
+        </a>
+
+        <a href="#simulator" class="nav-item">
+          <span>↗</span>
+          Growth Simulator
+        </a>
+
+        <a href="#insights" class="nav-item">
+          <span>✦</span>
+          AI Insights
+        </a>
+
+      </nav>
+
+      <div class="sidebar-bottom">
+
+        <div class="system-status">
+          <span class="status-dot"></span>
+          AI Engine Online
+        </div>
+
+        <div class="version">
+          RevenuePilot AI v1.0
+        </div>
+
+      </div>
+
+    </aside>
+
+
+    <!-- MAIN CONTENT -->
+    <main class="main-content">
+
+      <!-- TOPBAR -->
+      <header class="topbar">
+
+        <div>
+          <div class="eyebrow">EXECUTIVE INTELLIGENCE</div>
+
+          <h2>
+            Revenue Command Center
+          </h2>
+
+          <p>
+            Know what to fix. Know where to grow.
+          </p>
+        </div>
+
+        <div class="top-actions">
+
+          <div class="live-indicator">
+            <span></span>
+            LIVE ANALYTICS
+          </div>
+
+          <button class="primary-btn" id="runAnalysisBtn">
+            ✦ Run AI Analysis
+          </button>
+
+        </div>
+
+      </header>
+
+
+      <!-- =========================================
+           KPI OVERVIEW
+      ========================================== -->
+
+      <section id="overview" class="section">
+
+        <div class="section-heading">
+
+          <div>
+            <span class="section-label">BUSINESS OVERVIEW</span>
+            <h3>Executive Performance</h3>
+          </div>
+
+          <span class="period">
+            Last 30 Days
+          </span>
+
+        </div>
+
+
+        <div class="kpi-grid">
+
+          <article class="kpi-card">
+
+            <div class="kpi-top">
+              <span>Total Revenue</span>
+              <span class="kpi-icon">₹</span>
+            </div>
+
+            <strong id="totalRevenue">
+              $184,600
+            </strong>
+
+            <div class="kpi-change positive">
+              +12.8%
+              <span>vs previous period</span>
+            </div>
+
+          </article>
+
+
+          <article class="kpi-card">
+
+            <div class="kpi-top">
+              <span>Forecast Revenue</span>
+              <span class="kpi-icon">↗</span>
+            </div>
+
+            <strong id="forecastRevenue">
+              $221,400
+            </strong>
+
+            <div class="kpi-change positive">
+              +19.9%
+              <span>projected</span>
+            </div>
+
+          </article>
+
+
+          <article class="kpi-card">
+
+            <div class="kpi-top">
+              <span>Revenue at Risk</span>
+              <span class="kpi-icon warning">!</span>
+            </div>
+
+            <strong id="riskRevenue">
+              $28,750
+            </strong>
+
+            <div class="kpi-change negative">
+              7 opportunities
+              <span>need attention</span>
+            </div>
+
+          </article>
+
+
+          <article class="kpi-card">
+
+            <div class="kpi-top">
+              <span>Growth Score</span>
+              <span class="kpi-icon">★</span>
+            </div>
+
+            <strong id="growthScore">
+              87/100
+            </strong>
+
+            <div class="score-bar">
+              <div class="score-fill" style="width:87%"></div>
+            </div>
+
+          </article>
+
+        </div>
+
+      </section>
+
+
+      <!-- =========================================
+           FORECAST + AI PRIORITY
+      ========================================== -->
+
+      <section id="forecast" class="section dashboard-grid">
+
+        <div class="panel forecast-panel">
+
+          <div class="panel-header">
+
+            <div>
+              <span class="section-label">REVENUE FORECAST</span>
+              <h3>30-Day Revenue Outlook</h3>
+            </div>
+
+            <div class="forecast-badge">
+              AI Confidence 91%
+            </div>
+
+          </div>
+
+          <div class="forecast-chart">
+
+            <div class="chart-y">
+              <span>$250K</span>
+              <span>$200K</span>
+              <span>$150K</span>
+              <span>$100K</span>
+              <span>$50K</span>
+            </div>
+
+            <div class="chart-area">
+
+              <div class="grid-line"></div>
+              <div class="grid-line"></div>
+              <div class="grid-line"></div>
+              <div class="grid-line"></div>
+              <div class="grid-line"></div>
+
+              <svg
+                class="forecast-line"
+                viewBox="0 0 800 260"
+                preserveAspectRatio="none"
+                aria-label="Revenue forecast chart"
+              >
+
+                <defs>
+
+                  <linearGradient
+                    id="forecastGradient"
+                    x1="0"
+                    y1="0"
+                    x2="0"
+                    y2="1"
+                  >
+
+                    <stop
+                      offset="0%"
+                      stop-opacity=".30"
+                    />
+
+                    <stop
+                      offset="100%"
+                      stop-opacity="0"
+                    />
+
+                  </linearGradient>
+
+                </defs>
+
+                <path
+                  class="forecast-area"
+                  d="M0,210 C90,200 120,180 180,190 C240,200 270,150 330,165 C390,180 430,120 490,135 C550,150 590,105 650,115 C710,125 740,65 800,75 L800,260 L0,260 Z"
+                />
+
+                <path
+                  class="forecast-path"
+                  d="M0,210 C90,200 120,180 180,190 C240,200 270,150 330,165 C390,180 430,120 490,135 C550,150 590,105 650,115 C710,125 740,65 800,75"
+                />
+
+              </svg>
+
+              <div class="chart-x">
+                <span>W1</span>
+                <span>W2</span>
+                <span>W3</span>
+                <span>W4</span>
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <!-- AI PRIORITY -->
+
+        <div id="insights" class="panel ai-panel">
+
+          <div class="panel-header">
+
+            <div>
+              <span class="section-label">AI DECISION ENGINE</span>
+              <h3>What Should You Fix First?</h3>
+            </div>
+
+            <div class="ai-pulse">
+              AI
+            </div>
+
+          </div>
+
+
+          <div class="priority-list">
+
+            <div class="priority-item high">
+
+              <div class="priority-number">
+                01
+              </div>
+
+              <div class="priority-content">
+
+                <strong>Recover high-value opportunities</strong>
+
+                <p>
+                  7 opportunities are currently showing
+                  high purchase intent.
+                </p>
+
+                <span class="impact">
+                  Potential impact: +$18,400
+                </span>
+
+              </div>
+
+            </div>
+
+
+            <div class="priority-item medium">
+
+              <div class="priority-number">
+                02
+              </div>
+
+              <div class="priority-content">
+
+                <strong>Improve follow-up speed</strong>
+
+                <p>
+                  Response time is above the recommended
+                  benchmark for 23% of enquiries.
+                </p>
+
+                <span class="impact">
+                  Potential impact: +$7,250
+                </span>
+
+              </div>
+
+            </div>
+
+
+            <div class="priority-item low">
+
+              <div class="priority-number">
+                03
+              </div>
+
+              <div class="priority-content">
+
+                <strong>Increase conversion efficiency</strong>
+
+                <p>
+                  One customer segment is converting below
+                  the current business average.
+                </p>
+
+                <span class="impact">
+                  Potential impact: +$3,100
+                </span>
+
+              </div>
+
+            </div>
+
+          </div>
+
+
+          <button class="secondary-btn" id="insightBtn">
+            Generate Detailed Insight
+          </button>
+
+        </div>
+
+      </section>
+
+
+      <!-- =========================================
+           REVENUE LEAKS
+      ========================================== -->
+
+      <section id="leaks" class="section">
+
+        <div class="section-heading">
+
+          <div>
+            <span class="section-label">REVENUE LEAK DETECTOR</span>
+            <h3>Where Money May Be Leaking</h3>
+          </div>
+
+          <button class="ghost-btn" id="scanLeaksBtn">
+            Scan Again ↻
+          </button>
+
+        </div>
+
+
+        <div class="leak-grid">
+
+          <article class="leak-card">
+
+            <div class="leak-icon">
+              ☎
+            </div>
+
+            <div>
+              <span class="leak-title">Missed Enquiries</span>
+
+              <strong>
+                $8,900
+              </strong>
+
+              <p>
+                Estimated opportunity value
+              </p>
+            </div>
+
+            <span class="risk-tag high">
+              HIGH
+            </span>
+
+          </article>
+
+
+          <article class="leak-card">
+
+            <div class="leak-icon">
+              ◷
+            </div>
+
+            <div>
+              <span class="leak-title">Slow Follow-ups</span>
+
+              <strong>
+                $6,750
+              </strong>
+
+              <p>
+                Potential opportunity value
+              </p>
+            </div>
+
+            <span class="risk-tag high">
+              HIGH
+            </span>
+
+          </article>
+
+
+          <article class="leak-card">
+
+            <div class="leak-icon">
+              ◇
+            </div>
+
+            <div>
+              <span class="leak-title">Low Conversion Segment</span>
+
+              <strong>
+                $4,850
+              </strong>
+
+              <p>
+                Estimated improvement opportunity
+              </p>
+            </div>
+
+            <span class="risk-tag medium">
+              MEDIUM
+            </span>
+
+          </article>
+
+
+          <article class="leak-card">
+
+            <div class="leak-icon">
+              !
+            </div>
+
+            <div>
+              <span class="leak-title">Inactive Opportunities</span>
+
+              <strong>
+                $3,250
+              </strong>
+
+              <p>
+                Dormant opportunity value
+              </p>
+            </div>
+
+            <span class="risk-tag medium">
+              MEDIUM
+            </span>
+
+          </article>
+
+        </div>
+
+      </section>
+
+
+      <!-- =========================================
+           OPPORTUNITIES
+      ========================================== -->
+
+      <section id="opportunities" class="section">
+
+        <div class="section-heading">
+
+          <div>
+            <span class="section-label">OPPORTUNITY INTELLIGENCE</span>
+            <h3>Highest-Value Opportunities</h3>
+          </div>
+
+          <span class="live-label">
+            ● Updated moments ago
+          </span>
+
+        </div>
+
+
+        <div class="table-panel">
+
+          <div class="table-row table-head">
+
+            <span>Opportunity</span>
+            <span>Value</span>
+            <span>Intent</span>
+            <span>Status</span>
+            <span>AI Action</span>
+
+          </div>
+
+
+          <div class="table-row">
+
+            <span>
+              Enterprise Account
+            </span>
+
+            <strong>
+              $8,400
+            </strong>
+
+            <span class="intent high">
+              96%
+            </span>
+
+            <span class="status open">
+              Open
+            </span>
+
+            <button class="action-btn">
+              Prioritize
+            </button>
+
+          </div>
+
+
+          <div class="table-row">
+
+            <span>
+              Premium Service Lead
+            </span>
+
+            <strong>
+              $5,600
+            </strong>
+
+            <span class="intent high">
+              91%
+            </span>
+
+            <span class="status follow">
+              Follow-up
+            </span>
+
+            <button class="action-btn">
+              Follow Up
+            </button>
+
+          </div>
+
+
+          <div class="table-row">
+
+            <span>
+              Expansion Opportunity
+            </span>
+
+            <strong>
+              $4,400
+            </strong>
+
+            <span class="intent medium">
+              82%
+            </span>
+
+            <span class="status open">
+              Open
+            </span>
+
+            <button class="action-btn">
+              Analyze
+            </button>
+
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <!-- =========================================
+           GROWTH SIMULATOR
+      ========================================== -->
+
+      <section id="simulator" class="section">
+
+        <div class="panel simulator-panel">
+
+          <div class="panel-header">
+
+            <div>
+              <span class="section-label">
+                GROWTH SIMULATOR
+              </span>
+
+              <h3>
+                What If You Improved Conversion?
+              </h3>
+
+              <p>
+                Model a potential scenario using your own assumptions.
+              </p>
+            </div>
+
+            <div class="simulator-result">
+
+              <span>Estimated Monthly Impact</span>
+
+              <strong id="simulatorResult">
+                $12,500
+              </strong>
+
+            </div>
+
+          </div>
+
+
+          <div class="simulator-controls">
+
+            <div class="control-group">
+
+              <label for="monthlyLeads">
+                Monthly Leads
+              </label>
+
+              <input
+                id="monthlyLeads"
+                type="range"
+                min="50"
+                max="2000"
+                value="500"
+              >
+
+              <div class="range-value">
+                <span id="monthlyLeadsValue">
+                  500
+                </span>
+                leads
+              </div>
+
+            </div>
+
+
+            <div class="control-group">
+
+              <label for="customerValue">
+                Average Customer Value
+              </label>
+
+              <input
+                id="customerValue"
+                type="range"
+                min="100"
+                max="10000"
+                step="100"
+                value="1000"
+              >
+
+              <div class="range-value">
+                $<span id="customerValueValue">
+                  1,000
+                </span>
+              </div>
+
+            </div>
+
+
+            <div class="control-group">
+
+              <label for="conversionRate">
+                Recovery / Conversion Improvement
+              </label>
+
+              <input
+                id="conversionRate"
+                type="range"
+                min="1"
+                max="25"
+                value="5"
+              >
+
+              <div class="range-value">
+                <span id="conversionRateValue">
+                  5
+                </span>%
+              </div>
+
+            </div>
+
+          </div>
+
+
+          <div class="simulator-note">
+
+            <span>ⓘ</span>
+
+            <p>
+              This calculator provides an illustrative scenario
+              based on user-entered assumptions. It is not a
+              guarantee of revenue or financial results.
+            </p>
+
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <!-- =========================================
+           EXECUTIVE ACTION
+      ========================================== -->
+
+      <section class="section">
+
+        <div class="action-banner">
+
+          <div>
+
+            <span class="section-label">
+              EXECUTIVE ACTION CENTER
+            </span>
+
+            <h3>
+              Ready to Find Your Next Growth Opportunity?
+            </h3>
+
+            <p>
+              Run the AI analysis and identify the highest-impact
+              actions for your business.
+            </p>
+
+          </div>
+
+          <button
+            class="primary-btn large"
+            id="executiveActionBtn"
+          >
+            ✦ Analyze My Business
+          </button>
+
+        </div>
+
+      </section>
+
+
+      <!-- FOOTER -->
+
+      <footer class="footer">
+
+        <div>
+          © 2026 REVENUEPILOT AI
+        </div>
+
+        <div>
+          AI Revenue Intelligence • CEO Decision Support
+        </div>
+
+      </footer>
+
+    </main>
+
+  </div>
+
+
+  <!-- MODAL -->
+
+  <div
+    class="modal"
+    id="analysisModal"
+    aria-hidden="true"
+  >
+
+    <div class="modal-overlay"></div>
+
+    <div class="modal-card">
+
+      <button
+        class="modal-close"
+        id="modalClose"
+        aria-label="Close"
+      >
+        ×
+      </button>
+
+      <div class="modal-icon">
+        ✦
+      </div>
+
+      <span class="section-label">
+        AI ANALYSIS COMPLETE
+      </span>
+
+      <h3>
+        Your Highest-Impact Action
+      </h3>
+
+      <p id="modalMessage">
+        Revenue recovery opportunities should be reviewed
+        before increasing acquisition spend.
+      </p>
+
+      <div class="modal-impact">
+        <span>Illustrative opportunity</span>
+        <strong>
+          +$18,400
+        </strong>
+      </div>
+
+      <button
+        class="primary-btn"
+        id="modalDone"
+      >
+        View Recommendations
+      </button>
+
+    </div>
+
+  </div>
+
+
+  <script src="script.js"></script>
+
+</body>
+  </html>

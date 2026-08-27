@@ -1,4 +1,4 @@
-", function () {
+document.addEventListener("DOMContentLoaded", function () {
 
   // =====================================================
   // REVENUEPILOT AI — CLIENT DEMO ENGINE

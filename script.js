@@ -1,18 +1,23 @@
-document.addEventListener("DOMContentLoaded", function () {
+ document.addEventListener("DOMContentLoaded", function () {
+
+  "use strict";
 
   // =====================================================
-  // REVENUEPILOT AI — CLIENT DEMO ENGINE
+  // REVENUEPILOT AI
+  // Complete Client Demo + Dashboard Script
   // =====================================================
 
-  console.log("REVENUEPILOT AI initialized successfully.");
-
 
   // =====================================================
-  // HELPERS
+  // HELPER FUNCTIONS
   // =====================================================
 
-  function get(id) {
-    return document.getElementById(id);
+  function get(selector) {
+    return document.querySelector(selector);
+  }
+
+  function getAll(selector) {
+    return document.querySelectorAll(selector);
   }
 
   function currency(value) {
@@ -32,31 +37,28 @@ document.addEventListener("DOMContentLoaded", function () {
   // GROWTH SIMULATOR
   // =====================================================
 
-  const monthlyLeads = get("monthlyLeads");
-  const customerValue = get("customerValue");
-  const conversionRate = get("conversionRate");
+  const monthlyLeads = get("#monthlyLeads");
+  const customerValue = get("#customerValue");
+  const conversionRate = get("#conversionRate");
 
-  const monthlyLeadsValue = get("monthlyLeadsValue");
-  const customerValueValue = get("customerValueValue");
-  const conversionRateValue = get("conversionRateValue");
-  const simulatorResult = get("simulatorResult");
+  const monthlyLeadsValue = get("#monthlyLeadsValue");
+  const customerValueValue = get("#customerValueValue");
+  const conversionRateValue = get("#conversionRateValue");
+  const simulatorResult = get("#simulatorResult");
 
   function updateSimulator() {
 
     if (
       !monthlyLeads ||
       !customerValue ||
-      !conversionRate ||
-      !simulatorResult
+      !conversionRate
     ) {
       return;
     }
 
-    const leads = Number(monthlyLeads.value);
-    const value = Number(customerValue.value);
-    const rate = Number(conversionRate.value);
-
-    const result = leads * value * (rate / 100);
+    const leads = Number(monthlyLeads.value) || 0;
+    const value = Number(customerValue.value) || 0;
+    const rate = Number(conversionRate.value) || 0;
 
     if (monthlyLeadsValue) {
       monthlyLeadsValue.textContent = number(leads);
@@ -70,19 +72,34 @@ document.addEventListener("DOMContentLoaded", function () {
       conversionRateValue.textContent = rate + "%";
     }
 
-    simulatorResult.textContent = currency(result);
+    const result =
+      leads * value * (rate / 100);
+
+    if (simulatorResult) {
+      simulatorResult.textContent =
+        currency(result);
+    }
   }
 
   if (monthlyLeads) {
-    monthlyLeads.addEventListener("input", updateSimulator);
+    monthlyLeads.addEventListener(
+      "input",
+      updateSimulator
+    );
   }
 
   if (customerValue) {
-    customerValue.addEventListener("input", updateSimulator);
+    customerValue.addEventListener(
+      "input",
+      updateSimulator
+    );
   }
 
   if (conversionRate) {
-    conversionRate.addEventListener("input", updateSimulator);
+    conversionRate.addEventListener(
+      "input",
+      updateSimulator
+    );
   }
 
   updateSimulator();
@@ -92,169 +109,222 @@ document.addEventListener("DOMContentLoaded", function () {
   // AI ANALYSIS MODAL
   // =====================================================
 
-  const runAnalysisBtn = get("runAnalysisBtn");
-  const executiveActionBtn = get("executiveActionBtn");
+  const runAnalysisBtn =
+    get("#runAnalysisBtn");
 
-  const analysisModal = get("analysisModal");
-  const modalClose = get("modalClose");
-  const modalDone = get("modalDone");
-  const modalMessage = get("modalMessage");
+  const executiveActionBtn =
+    get("#executiveActionBtn");
+
+  const insightBtn =
+    get("#insightBtn");
+
+  const analysisModal =
+    get("#analysisModal");
+
+  const modalClose =
+    get("#modalClose");
+
+  const modalDone =
+    get("#modalDone");
+
+  const modalMessage =
+    get("#modalMessage");
+
 
   function openAnalysis(message) {
 
     if (!analysisModal) {
-      alert(message || "AI analysis completed.");
       return;
     }
 
     if (modalMessage) {
+
       modalMessage.textContent =
         message ||
         "AI analysis recommends reviewing high-value opportunities first, improving follow-up speed, and reducing revenue leakage.";
+
     }
 
     analysisModal.classList.add("show");
-    analysisModal.setAttribute("aria-hidden", "false");
 
-    document.body.style.overflow = "hidden";
+    analysisModal.setAttribute(
+      "aria-hidden",
+      "false"
+    );
+
+    document.body.style.overflow =
+      "hidden";
   }
+
 
   function closeAnalysis() {
 
-    if (!analysisModal) return;
+    if (!analysisModal) {
+      return;
+    }
 
-    analysisModal.classList.remove("show");
-    analysisModal.setAttribute("aria-hidden", "true");
+    analysisModal.classList.remove(
+      "show"
+    );
 
-    document.body.style.overflow = "";
+    analysisModal.setAttribute(
+      "aria-hidden",
+      "true"
+    );
+
+    document.body.style.overflow =
+      "";
   }
 
 
   if (runAnalysisBtn) {
 
-    runAnalysisBtn.addEventListener("click", function () {
-
-      const oldText = runAnalysisBtn.textContent;
-
-      runAnalysisBtn.textContent = "⏳ Analyzing...";
-      runAnalysisBtn.disabled = true;
-
-      setTimeout(function () {
-
-        runAnalysisBtn.textContent = "✓ Analysis Complete";
-        runAnalysisBtn.disabled = false;
+    runAnalysisBtn.addEventListener(
+      "click",
+      function () {
 
         openAnalysis(
-          "AI analysis complete. Priority recommendation: recover high-value opportunities first, improve follow-up speed, and reduce revenue leakage."
+          "AI analysis recommends reviewing high-value opportunities first, improving follow-up speed, and reducing revenue leakage."
         );
 
-        setTimeout(function () {
-          runAnalysisBtn.textContent = oldText;
-        }, 1800);
-
-      }, 1200);
-
-    });
+      }
+    );
 
   }
 
 
   if (executiveActionBtn) {
 
-    executiveActionBtn.addEventListener("click", function () {
+    executiveActionBtn.addEventListener(
+      "click",
+      function () {
 
-      openAnalysis(
-        "Executive recommendation: focus your team on high-intent opportunities first. The highest potential impact is currently concentrated in a small number of opportunities."
-      );
+        openAnalysis(
+          "Executive recommendation: focus your team on high-intent opportunities, accelerate follow-up and recover revenue currently at risk."
+        );
 
-    });
+      }
+    );
+
+  }
+
+
+  if (insightBtn) {
+
+    insightBtn.addEventListener(
+      "click",
+      function () {
+
+        openAnalysis(
+          "Priority recommendation: focus first on high-intent opportunities, then improve response speed and follow-up consistency."
+        );
+
+      }
+    );
 
   }
 
 
   if (modalClose) {
-    modalClose.addEventListener("click", closeAnalysis);
+    modalClose.addEventListener(
+      "click",
+      closeAnalysis
+    );
   }
+
 
   if (modalDone) {
-    modalDone.addEventListener("click", closeAnalysis);
+    modalDone.addEventListener(
+      "click",
+      closeAnalysis
+    );
   }
 
 
-  if (analysisModal) {
+  const modalOverlay =
+    get(".modal-overlay");
 
-    analysisModal.addEventListener("click", function (event) {
+  if (modalOverlay) {
 
-      if (event.target === analysisModal) {
+    modalOverlay.addEventListener(
+      "click",
+      function (event) {
+
+        if (
+          event.target === modalOverlay
+        ) {
+          closeAnalysis();
+        }
+
+      }
+    );
+
+  }
+
+
+  document.addEventListener(
+    "keydown",
+    function (event) {
+
+      if (
+        event.key === "Escape"
+      ) {
         closeAnalysis();
       }
 
-    });
-
-  }
-
-
-  document.addEventListener("keydown", function (event) {
-
-    if (event.key === "Escape") {
-      closeAnalysis();
     }
-
-  });
-
-
-  // =====================================================
-  // DETAILED INSIGHT
-  // =====================================================
-
-  const insightBtn = get("insightBtn");
-
-  if (insightBtn) {
-
-    insightBtn.addEventListener("click", function () {
-
-      openAnalysis(
-        "Detailed AI insight: your biggest opportunity is improving conversion on high-intent leads. Recommended sequence: respond faster → prioritize high-value leads → follow up consistently → measure conversion."
-      );
-
-    });
-
-  }
+  );
 
 
   // =====================================================
   // REVENUE LEAK SCANNER
   // =====================================================
 
-  const scanLeaksBtn = get("scanLeaksBtn");
+  const scanLeaksBtn =
+    get("#scanLeaksBtn");
 
   if (scanLeaksBtn) {
 
-    scanLeaksBtn.addEventListener("click", function () {
+    scanLeaksBtn.addEventListener(
+      "click",
+      function () {
 
-      const oldText = scanLeaksBtn.textContent;
+        const oldText =
+          scanLeaksBtn.textContent;
 
-      scanLeaksBtn.textContent = "⏳ Scanning...";
-      scanLeaksBtn.disabled = true;
+        scanLeaksBtn.textContent =
+          "⏳ Scanning...";
 
-      setTimeout(function () {
+        scanLeaksBtn.disabled =
+          true;
 
-        scanLeaksBtn.textContent = "✓ Scan Complete";
 
-        openAnalysis(
-          "Revenue Leak Scan complete. AI detected three areas requiring attention: delayed follow-ups, inactive opportunities, and conversion leakage."
+        setTimeout(
+          function () {
+
+            scanLeaksBtn.textContent =
+              "✓ Scan Complete";
+
+          },
+          1200
         );
 
-        setTimeout(function () {
 
-          scanLeaksBtn.textContent = oldText;
-          scanLeaksBtn.disabled = false;
+        setTimeout(
+          function () {
 
-        }, 1800);
+            scanLeaksBtn.textContent =
+              oldText;
 
-      }, 1400);
+            scanLeaksBtn.disabled =
+              false;
 
-    });
+          },
+          3000
+        );
+
+      }
+    );
 
   }
 
@@ -264,78 +334,115 @@ document.addEventListener("DOMContentLoaded", function () {
   // =====================================================
 
   const actionButtons =
-    document.querySelectorAll(".action-btn");
+    getAll(".action-btn");
 
-  actionButtons.forEach(function (button) {
+  actionButtons.forEach(
+    function (button) {
 
-    button.addEventListener("click", function () {
+      button.addEventListener(
+        "click",
+        function () {
 
-      const oldText = button.textContent;
+          const oldText =
+            button.textContent;
 
-      button.textContent = "⏳ Analyzing...";
-      button.disabled = true;
+          button.textContent =
+            "⏳ Analyzing...";
 
-      setTimeout(function () {
+          button.disabled =
+            true;
 
-        button.textContent = "✓ Reviewed";
 
-        openAnalysis(
-          "Opportunity reviewed successfully. AI recommends prioritizing this opportunity based on potential value, intent and conversion probability."
-        );
+          setTimeout(
+            function () {
 
-        setTimeout(function () {
+              button.textContent =
+                "✓ Reviewed";
 
-          button.textContent = oldText;
-          button.disabled = false;
+              button.disabled =
+                false;
 
-        }, 1800);
+            },
+            900
+          );
 
-      }, 900);
 
-    });
+          setTimeout(
+            function () {
 
-  });
+              button.textContent =
+                oldText;
+
+            },
+            2600
+          );
+
+        }
+      );
+
+    }
+  );
 
 
   // =====================================================
-  // NAVIGATION
+  // SIDEBAR NAVIGATION
   // =====================================================
 
   const navItems =
-    document.querySelectorAll(".nav-item");
+    getAll(".nav-item");
 
-  navItems.forEach(function (item) {
+  navItems.forEach(
+    function (item) {
 
-    item.addEventListener("click", function () {
+      item.addEventListener(
+        "click",
+        function () {
 
-      navItems.forEach(function (nav) {
-        nav.classList.remove("active");
-      });
+          navItems.forEach(
+            function (nav) {
 
-      item.classList.add("active");
+              nav.classList.remove(
+                "active"
+              );
 
-    });
+            }
+          );
 
-  });
+          item.classList.add(
+            "active"
+          );
+
+        }
+      );
+
+    }
+  );
 
 
   // =====================================================
-  // LIVE TIME
+  // LIVE ANALYTICS TIME
   // =====================================================
 
   const liveLabel =
-    document.querySelector(".live-label");
+    get(".live-label");
 
   function updateTime() {
 
-    if (!liveLabel) return;
+    if (!liveLabel) {
+      return;
+    }
 
-    const now = new Date();
+    const now =
+      new Date();
 
-    const time = now.toLocaleTimeString("en-US", {
-      hour: "2-digit",
-      minute: "2-digit"
-    });
+    const time =
+      now.toLocaleTimeString(
+        "en-US",
+        {
+          hour: "2-digit",
+          minute: "2-digit"
+        }
+      );
 
     liveLabel.textContent =
       "● Updated " + time;
@@ -343,291 +450,251 @@ document.addEventListener("DOMContentLoaded", function () {
 
   updateTime();
 
-  setInterval(updateTime, 60000);
-
 
   // =====================================================
-  // TRY LIVE DEMO BUTTON
+  // CLIENT DEMO MODE
   // =====================================================
-
-  const demoButtons =
-    document.querySelectorAll(
-      'a[href="#overview"], .demo-button'
-    );
-
-  demoButtons.forEach(function (button) {
-
-    button.addEventListener("click", function () {
-
-      setTimeout(function () {
-
-        const overview =
-          document.getElementById("overview");
-
-        if (overview) {
-
-          overview.scrollIntoView({
-            behavior: "smooth",
-            block: "start"
-          });
-
-        }
-
-      }, 50);
-
-    });
-
-  });
-
-
-  // =====================================================
-  // WHATSAPP CTA
-  // =====================================================
-
-  const whatsappButtons =
-    document.querySelectorAll(
-      'a[href*="wa.me"]'
-    );
-
-  whatsappButtons.forEach(function (button) {
-
-    button.addEventListener("click", function () {
-
-      console.log(
-        "RevenuePilot AI WhatsApp CTA clicked."
-      );
-
-    });
-
-  });
-
-
-  // =====================================================
-  // BOOK DEMO TRACKING
-  // =====================================================
-
-  const bookingButtons =
-    document.querySelectorAll(
-      'a[href="#contact"]'
-    );
-
-  bookingButtons.forEach(function (button) {
-
-    button.addEventListener("click", function () {
-
-      console.log(
-        "RevenuePilot AI Demo booking CTA clicked."
-      );
-
-    });
-
-  });
-
-
-  // =====================================================
-  // CLIENT DEMO READY
-  // =====================================================
-
-  console.log(
-    "✓ RevenuePilot AI Client Demo Engine Ready"
-  );
-// =====================================================
-// REVENUEPILOT AI — CLIENT DEMO MODE
-// =====================================================
-
-(function () {
 
   const demoModeBtn =
-    document.getElementById("demoModeBtn");
+    get("#demoModeBtn");
 
-  let demoRunning = false;
+  let demoRunning =
+    false;
 
-  function updateElement(selector, value) {
+
+  function animateNumber(
+    selector,
+    start,
+    end,
+    duration
+  ) {
 
     const element =
-      document.querySelector(selector);
+      get(selector);
 
-    if (element) {
-      element.textContent = value;
+    if (!element) {
+      return;
     }
-  }
 
+    const startTime =
+      performance.now();
 
-  function animateNumber(selector, start, end, duration) {
-
-    const element =
-      document.querySelector(selector);
-
-    if (!element) return;
-
-    const startTime = performance.now();
 
     function animate(currentTime) {
 
       const progress =
         Math.min(
-          (currentTime - startTime) / duration,
+          (currentTime - startTime) /
+            duration,
           1
         );
 
+
       const value =
         Math.floor(
-          start + (end - start) * progress
+          start +
+          (end - start) *
+            progress
         );
 
+
       element.textContent =
-        "$" + value.toLocaleString("en-US");
+        currency(value);
+
 
       if (progress < 1) {
-        requestAnimationFrame(animate);
+
+        requestAnimationFrame(
+          animate
+        );
+
       }
 
     }
 
-    requestAnimationFrame(animate);
+
+    requestAnimationFrame(
+      animate
+    );
   }
 
 
   function runClientDemo() {
 
-    if (demoRunning) return;
+    if (demoRunning) {
+      return;
+    }
 
-    demoRunning = true;
+    demoRunning =
+      true;
+
 
     if (demoModeBtn) {
 
-      demoModeBtn.disabled = true;
+      demoModeBtn.disabled =
+        true;
 
       demoModeBtn.textContent =
-        "⏳ Running Demo...";
+        "⏳ Running AI Demo...";
+
     }
 
 
     // ---------------------------------------------
-    // STEP 1 — ANALYZING
+    // STEP 1
     // ---------------------------------------------
 
-    updateElement(
-      ".eyebrow",
-      "AI ANALYZING BUSINESS SIGNALS..."
+    const eyebrow =
+      get(".eyebrow");
+
+    if (eyebrow) {
+
+      eyebrow.textContent =
+        "AI ANALYZING BUSINESS SIGNALS...";
+
+    }
+
+
+    const liveIndicator =
+      get(".live-indicator");
+
+    if (liveIndicator) {
+
+      liveIndicator.innerHTML =
+        "<span></span> ANALYZING...";
+
+    }
+
+
+    // ---------------------------------------------
+    // STEP 2 — UPDATE KPIs
+    // ---------------------------------------------
+
+    setTimeout(
+      function () {
+
+        animateNumber(
+          ".kpi-card:nth-child(1) strong",
+          184600,
+          197850,
+          1200
+        );
+
+
+        animateNumber(
+          ".kpi-card:nth-child(2) strong",
+          221400,
+          238600,
+          1400
+        );
+
+
+        animateNumber(
+          ".kpi-card:nth-child(3) strong",
+          28750,
+          21400,
+          1200
+        );
+
+
+        const growthScore =
+          get(
+            ".kpi-card:nth-child(4) strong"
+          );
+
+        if (growthScore) {
+
+          growthScore.textContent =
+            "93/100";
+
+        }
+
+
+        const scoreFill =
+          get(".score-fill");
+
+        if (scoreFill) {
+
+          scoreFill.style.width =
+            "93%";
+
+        }
+
+      },
+      900
     );
 
 
-    setTimeout(function () {
-
-      // Revenue
-
-      animateNumber(
-        ".kpi-card:nth-child(1) strong",
-        184600,
-        197850,
-        1200
-      );
-
-
-      // Forecast
-
-      animateNumber(
-        ".kpi-card:nth-child(2) strong",
-        221400,
-        238600,
-        1400
-      );
-
-
-      // Revenue Risk
-
-      animateNumber(
-        ".kpi-card:nth-child(3) strong",
-        28750,
-        21400,
-        1200
-      );
-
-
-      // Growth Score
-
-      updateElement(
-        ".kpi-card:nth-child(4) strong",
-        "93/100"
-      );
-
-
-    }, 900);
-
-
     // ---------------------------------------------
-    // STEP 2 — AI COMPLETE
+    // STEP 3 — COMPLETE
     // ---------------------------------------------
 
-    setTimeout(function () {
+    setTimeout(
+      function () {
 
-      updateElement(
-        ".eyebrow",
-        "AI ANALYSIS COMPLETE"
-      );
+        if (eyebrow) {
 
+          eyebrow.textContent =
+            "AI ANALYSIS COMPLETE";
 
-      const live =
-        document.querySelector(".live-indicator");
-
-      if (live) {
-
-        live.innerHTML =
-          "<span></span> AI INSIGHTS READY";
-
-      }
+        }
 
 
-      if (demoModeBtn) {
+        if (liveIndicator) {
 
-        demoModeBtn.textContent =
-          "✓ Demo Complete";
+          liveIndicator.innerHTML =
+            "<span></span> AI INSIGHTS READY";
 
-      }
-
-
-      demoRunning = false;
+        }
 
 
-      // -------------------------------------------
-      // SHOW AI RESULT
-      // -------------------------------------------
+        if (demoModeBtn) {
 
-      if (typeof openAnalysis === "function") {
+          demoModeBtn.textContent =
+            "✓ Demo Complete";
+
+        }
+
+
+        demoRunning =
+          false;
+
+
+        // Show result
 
         openAnalysis(
-          "Client Demo Result: RevenuePilot AI identified high-value opportunities, reduced revenue-at-risk and improved the projected growth score. Recommended next action: prioritize high-intent opportunities and accelerate follow-up."
+          "Client Demo Result: RevenuePilot AI identified high-value opportunities, detected revenue leakage and improved the projected growth score. Recommended action: prioritize high-intent opportunities and accelerate follow-up."
         );
 
-      }
 
-    }, 3000);
+      },
+      3000
+    );
 
 
     // ---------------------------------------------
-    // RESET BUTTON
+    // RESET DEMO BUTTON
     // ---------------------------------------------
 
-    setTimeout(function () {
+    setTimeout(
+      function () {
 
-      if (demoModeBtn) {
+        if (demoModeBtn) {
 
-        demoModeBtn.disabled = false;
+          demoModeBtn.disabled =
+            false;
 
-        demoModeBtn.textContent =
-          "🚀 Run Client Demo";
+          demoModeBtn.textContent =
+            "🚀 Run Client Demo";
 
-      }
+        }
 
-    }, 5200);
+      },
+      5500
+    );
 
   }
 
-
-  // =================================================
-  // CONNECT BUTTON
-  // =================================================
 
   if (demoModeBtn) {
 
@@ -639,27 +706,118 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
 
-  // =================================================
-  // AUTO DEMO FROM URL
-  // =================================================
+  // =====================================================
+  // AUTO DEMO
+  // URL:
+  // ?demo=true
+  // =====================================================
 
-  const params =
+  const urlParams =
     new URLSearchParams(
       window.location.search
     );
 
+
   if (
-    params.get("demo") === "true"
+    urlParams.get("demo") === "true"
   ) {
 
     setTimeout(
       runClientDemo,
-      1000
+      1200
     );
 
   }
 
 
-})();
-});
+  // =====================================================
+  // SMOOTH LANDING NAVIGATION
+  // =====================================================
 
+  const landingLinks =
+    getAll(
+      'a[href^="#"]'
+    );
+
+
+  landingLinks.forEach(
+    function (link) {
+
+      link.addEventListener(
+        "click",
+        function (event) {
+
+          const targetId =
+            link.getAttribute("href");
+
+
+          if (
+            !targetId ||
+            targetId === "#"
+          ) {
+            return;
+          }
+
+
+          const target =
+            get(targetId);
+
+
+          if (target) {
+
+            event.preventDefault();
+
+
+            target.scrollIntoView(
+              {
+                behavior: "smooth",
+                block: "start"
+              }
+            );
+
+          }
+
+        }
+      );
+
+    }
+  );
+
+
+  // =====================================================
+  // BOOK DEMO TRACKING
+  // =====================================================
+
+  const demoLinks =
+    getAll(
+      'a[href*="wa.me"], a[href^="mailto:"]'
+    );
+
+
+  demoLinks.forEach(
+    function (link) {
+
+      link.addEventListener(
+        "click",
+        function () {
+
+          console.log(
+            "RevenuePilot AI: Demo CTA clicked."
+          );
+
+        }
+      );
+
+    }
+  );
+
+
+  // =====================================================
+  // INITIALIZATION
+  // =====================================================
+
+  console.log(
+    "REVENUEPILOT AI initialized successfully."
+  );
+
+});

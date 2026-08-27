@@ -431,5 +431,235 @@ document.addEventListener("DOMContentLoaded", function () {
   console.log(
     "✓ RevenuePilot AI Client Demo Engine Ready"
   );
+// =====================================================
+// REVENUEPILOT AI — CLIENT DEMO MODE
+// =====================================================
 
+(function () {
+
+  const demoModeBtn =
+    document.getElementById("demoModeBtn");
+
+  let demoRunning = false;
+
+  function updateElement(selector, value) {
+
+    const element =
+      document.querySelector(selector);
+
+    if (element) {
+      element.textContent = value;
+    }
+  }
+
+
+  function animateNumber(selector, start, end, duration) {
+
+    const element =
+      document.querySelector(selector);
+
+    if (!element) return;
+
+    const startTime = performance.now();
+
+    function animate(currentTime) {
+
+      const progress =
+        Math.min(
+          (currentTime - startTime) / duration,
+          1
+        );
+
+      const value =
+        Math.floor(
+          start + (end - start) * progress
+        );
+
+      element.textContent =
+        "$" + value.toLocaleString("en-US");
+
+      if (progress < 1) {
+        requestAnimationFrame(animate);
+      }
+
+    }
+
+    requestAnimationFrame(animate);
+  }
+
+
+  function runClientDemo() {
+
+    if (demoRunning) return;
+
+    demoRunning = true;
+
+    if (demoModeBtn) {
+
+      demoModeBtn.disabled = true;
+
+      demoModeBtn.textContent =
+        "⏳ Running Demo...";
+    }
+
+
+    // ---------------------------------------------
+    // STEP 1 — ANALYZING
+    // ---------------------------------------------
+
+    updateElement(
+      ".eyebrow",
+      "AI ANALYZING BUSINESS SIGNALS..."
+    );
+
+
+    setTimeout(function () {
+
+      // Revenue
+
+      animateNumber(
+        ".kpi-card:nth-child(1) strong",
+        184600,
+        197850,
+        1200
+      );
+
+
+      // Forecast
+
+      animateNumber(
+        ".kpi-card:nth-child(2) strong",
+        221400,
+        238600,
+        1400
+      );
+
+
+      // Revenue Risk
+
+      animateNumber(
+        ".kpi-card:nth-child(3) strong",
+        28750,
+        21400,
+        1200
+      );
+
+
+      // Growth Score
+
+      updateElement(
+        ".kpi-card:nth-child(4) strong",
+        "93/100"
+      );
+
+
+    }, 900);
+
+
+    // ---------------------------------------------
+    // STEP 2 — AI COMPLETE
+    // ---------------------------------------------
+
+    setTimeout(function () {
+
+      updateElement(
+        ".eyebrow",
+        "AI ANALYSIS COMPLETE"
+      );
+
+
+      const live =
+        document.querySelector(".live-indicator");
+
+      if (live) {
+
+        live.innerHTML =
+          "<span></span> AI INSIGHTS READY";
+
+      }
+
+
+      if (demoModeBtn) {
+
+        demoModeBtn.textContent =
+          "✓ Demo Complete";
+
+      }
+
+
+      demoRunning = false;
+
+
+      // -------------------------------------------
+      // SHOW AI RESULT
+      // -------------------------------------------
+
+      if (typeof openAnalysis === "function") {
+
+        openAnalysis(
+          "Client Demo Result: RevenuePilot AI identified high-value opportunities, reduced revenue-at-risk and improved the projected growth score. Recommended next action: prioritize high-intent opportunities and accelerate follow-up."
+        );
+
+      }
+
+    }, 3000);
+
+
+    // ---------------------------------------------
+    // RESET BUTTON
+    // ---------------------------------------------
+
+    setTimeout(function () {
+
+      if (demoModeBtn) {
+
+        demoModeBtn.disabled = false;
+
+        demoModeBtn.textContent =
+          "🚀 Run Client Demo";
+
+      }
+
+    }, 5200);
+
+  }
+
+
+  // =================================================
+  // CONNECT BUTTON
+  // =================================================
+
+  if (demoModeBtn) {
+
+    demoModeBtn.addEventListener(
+      "click",
+      runClientDemo
+    );
+
+  }
+
+
+  // =================================================
+  // AUTO DEMO FROM URL
+  // =================================================
+
+  const params =
+    new URLSearchParams(
+      window.location.search
+    );
+
+  if (
+    params.get("demo") === "true"
+  ) {
+
+    setTimeout(
+      runClientDemo,
+      1000
+    );
+
+  }
+
+
+})();
 });
+
